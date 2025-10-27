@@ -2,7 +2,7 @@
 #define BUS_H
 
 #include "../common.h"
-#include "vsmile.h"
+#include "leapster.h"
 
 #include "hw/gpio.h"
 #include "hw/timers.h"
@@ -38,13 +38,13 @@ typedef struct Bus_t {
   uint16_t ram[RAM_SIZE];
   // uint16_t nvram[0x200000];
 
-  uint16_t* romBuffer;
-  uint16_t* sysRomBuffer;
+  uint16_t* rom.zipBuffer;
+  uint16_t* leapster.zipBuffer;
 
-  uint32_t romSize;
-  uint32_t sysRomSize;
+  uint32_t rom.zipSize;
+  uint32_t leapster.zipSize;
 
-  uint8_t romDecodeMode;
+  uint8_t rom.zipDecodeMode;
   uint8_t ramDecodeMode;
   uint8_t chipSelectMode;
 } Bus_t;
@@ -57,7 +57,7 @@ void Bus_LoadState();
 
 void Bus_Reset();
 void Bus_LoadROM(const char* filePath);
-void Bus_LoadSysRom(const char* filePath);
+void Bus_LoadLeapster.zip(const char* filePath);
 
 void Bus_Update(int32_t cycles);
 
