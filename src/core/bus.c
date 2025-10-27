@@ -85,20 +85,20 @@ void Bus_LoadROM(const char* filePath) {
 void Bus_LoadSysRom(const char* filePath) {
   FILE* file = fopen(filePath, "rb");
   if (!file) {
-    VSmile_Warning("unable to load system rom - can't open \"%s\"", filePath);
+    Leapster_Warning("unable to load system rom - can't open \"%s\"", filePath);
     return;
   }
 
   // Get size of ROM
   fseek(file, 0, SEEK_END);
-  this.sysRomSize = ftell(file);
+  this.Leapster.zipSize = ftell(file);
   fseek(file, 0, SEEK_SET);
 
-  if (this.sysRomBuffer)
-    free(this.sysRomBuffer);
+  if (this.Leapster.zipBuffer)
+    free(this.Leapster.zipBuffer);
 
-  this.sysRomBuffer = malloc(this.sysRomSize);
-  fread(this.sysRomBuffer, this.sysRomSize, sizeof(uint16_t), file);
+  this.Leapster.zipBuffer = malloc(this.Leapster.zipSize);
+  fread(this.Leapster.zipBuffer, this.Leapster.zipSize, sizeof(uint16_t), file);
 
   fclose(file);
 }
@@ -121,7 +121,7 @@ uint16_t Bus_Load(uint32_t addr) {
     return SPU_Read(addr);
   }
   else if (addr < 0x3d00) {
-    VSmile_Warning("read from internal memory location %04x", addr);
+    Leapster_Warning("read from internal memory location %04x", addr);
     return 0x0000;
   }
   else if (addr < IO_START+IO_SIZE+DMA_SIZE) {
@@ -143,19 +143,19 @@ uint16_t Bus_Load(uint32_t addr) {
       return DMA_Read(addr);
     }
 
-    VSmile_Warning("unknown read from IO port %04x at %06x\n", addr, CPU_GetCSPC());
+    Leapster_Warning("unknown read from IO port %04x at %06x\n", addr, CPU_GetCSPC());
     return 0x0000;
   } else if (addr < 0x4000) {
-    VSmile_Warning("read from internal memory location %04x", addr);
+    Leapster_Warning("read from internal memory location %04x", addr);
     return 0x0000;
   }
 
-  if ((this.romDecodeMode & 2) && this.sysRomBuffer && (addr >= SYSROM_START) && (addr < BUS_SIZE)) {
-    return this.sysRomBuffer[addr - SYSROM_START];
+  if ((this.rom.zipDecodeMode & 2) && this.Leapster.zipBuffer && (addr >= SYSROM_START) && (addr < BUS_SIZE)) {
+    return this.Leapster.zipBuffer[addr - SYSROM_START];
   }
 
-  if (this.romBuffer && (addr < BUS_SIZE)) {
-    return this.romBuffer[addr];
+  if (this.rom.zipBuffer && (addr < BUS_SIZE)) {
+    return this.rom.zipBuffer[addr];
   }
 
   return 0x0000;
