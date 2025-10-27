@@ -13,7 +13,7 @@ Run the following commands:
 ```
 cd <path/to/project>
 Make platform=<platform> build=<build>
-./VFrown <path/to/game>
+./Juilanster <path/to/game>
 ```
 Replace `<platform>` with `windows`, `macos` or `linux` depending on your platform,
 and replace `<build>` with `debug` or `release`. Without these, it will default to building a linux debug build.
