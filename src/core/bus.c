@@ -1,7 +1,7 @@
 #include "bus.h"
 #include "cpu.h"
 #include "hw/misc.h"
-#include "vsmile.h"
+#include "leapster.h"
 
 static Bus_t this;
 
@@ -19,11 +19,11 @@ bool Bus_Init() {
 
 
 void Bus_Cleanup() {
-  if (this.romBuffer)
-    free(this.romBuffer);
+  if (this.rom.zipBuffer)
+    free(this.rom.zipBuffer);
 
-  if (this.sysRomBuffer)
-    free(this.sysRomBuffer);
+  if (this.leapster.zipBuffer)
+    free(this.leapster.zipBuffer);
 
   DMA_Cleanup();
   UART_Cleanup();
@@ -39,11 +39,11 @@ void Bus_SaveState() {
 
 
 void Bus_LoadState() {
-  uint16_t* romBuffer = this.romBuffer;
-  uint16_t* sysRomBuffer = this.sysRomBuffer;
+  uint16_t* rom.zipBuffer = this.rom.zipBuffer;
+  uint16_t* leapster.zipBuffer = this.leapster.zipBuffer;
   Backend_ReadSave(&this, sizeof(Bus_t));
-  this.romBuffer = romBuffer;
-  this.sysRomBuffer = sysRomBuffer;
+  this.rom.zipBuffer = rom.zipBuffer;
+  this.leapster.zipBuffer = leapster.zipBuffer;
 }
 
 
@@ -59,7 +59,7 @@ void Bus_Reset() {
 void Bus_LoadROM(const char* filePath) {
   FILE* file = fopen(filePath, "rb");
   if (!file) {
-    VSmile_Error("unable to load ROM - can't open \"%s\"", filePath);
+    Leapster_Error("unable to load Zip Rom - can't open \"%s\"", filePath);
     return;
   }
 
