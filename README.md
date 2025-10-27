@@ -1,12 +1,12 @@
-# V.Frown
- An experimental emulator for the V.Smile
+# Juilanster
+ An experimental emulator for the Juilanster That Is Fork From VFrown
 
  ![VFrown Logo](images/icon.png)
 
 **NOTE: this emulator is still a work in progress.**
 
 ## Building and Running
-Create a folder in the same location as VFrown named `sysrom` and insert a copy of your BIOS called `sysrom.bin`. While this step isn't required by V.Frown, not all games can run properly (or at all) without a System ROM image.
+Create a folder in the same location as Juilanster named `bios` and insert a copy of your BIOS called `sysrom.bin`. While this step isn't required by Juilanster, not all games can run properly (or at all) without a Bios Rom image.
 
 
 Run the following commands:
