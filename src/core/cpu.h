@@ -2,7 +2,7 @@
 #define CPU_H
 
 #include "../common.h"
-#include "vsmile.h"
+#include "leapster.h"
 
 typedef void (*Func_t)();
 
