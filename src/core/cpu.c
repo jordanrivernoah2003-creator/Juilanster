@@ -115,7 +115,7 @@ int32_t CPU_Tick() {
 
   // Safety net to prevent infinite loop condition
   if (this.cycles < 1) {
-    VSmile_Warning("invalid cycle count %d", this.cycles);
+    Leapster_Warning("invalid cycle count %d", this.cycles);
     this.cycles = 1;
   }
 
