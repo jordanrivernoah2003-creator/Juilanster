@@ -57,7 +57,7 @@ void Bus_LoadState();
 
 void Bus_Reset();
 void Bus_LoadROM(const char* filePath);
-void Bus_LoadLeapster.zip(const char* filePath);
+void Bus_LoadBios(const char* filePath);
 
 void Bus_Update(int32_t cycles);
 
