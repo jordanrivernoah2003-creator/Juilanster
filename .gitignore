@@ -1,12 +1,12 @@
 # Paths
 /roms
-/sysRom
+/bios
 /tests
 
 # Files
 *.o
 *.vfss
 .DS_Store
-VFrown
+Juilanster
 todo.txt
 userSettings.ini
