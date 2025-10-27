@@ -1,5 +1,5 @@
 # Juilanster
- An experimental emulator for the Juilanster That Is Fork From VFrown
+ An experimental emulator for the Leapster That Is Fork From VFrown
 
  ![VFrown Logo](images/icon.png)
 
